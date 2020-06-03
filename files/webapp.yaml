@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: webapp
 spec:
-  minReadySeconds: 10
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: webapp
@@ -15,8 +14,10 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
-
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
 
 ---
 apiVersion: v1
@@ -27,7 +28,7 @@ spec:
   selector:
     app: webapp
   ports:
-    - name: http
-      port: 80
-      nodePort: 30080
+  - name: http
+    port: 80
+    nodePort: 30080
   type: NodePort

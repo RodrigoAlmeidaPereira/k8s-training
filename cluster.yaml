@@ -7,4 +7,6 @@ nodes:
     hostPort: 30080
   - containerPort: 30010
     hostPort: 30010
+  - containerPort: 30020
+    hostPort: 30020
 
